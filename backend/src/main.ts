@@ -20,7 +20,10 @@ async function bootstrap() {
     : true; // reflect request origin in development
 
   app.enableCors({
-    origin: corsOrigins,
+    origin: [
+      'https://fomoapp-git-main-wolfs-projects-ad304ccf.vercel.app/.vercel.app', // Your Production Frontend
+      'http://localhost:3000',                  // Your Local Development
+    ],
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization'],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],

@@ -2,7 +2,17 @@
  * API utility functions for frontend-backend communication
  */
 
+import axios from 'axios';
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:3002";
+
+// Axios instance for easy API calls
+export const api = axios.create({
+  baseURL: API_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
 /**
  * Test if backend is reachable
@@ -16,7 +26,7 @@ export async function testBackendConnection() {
         "Content-Type": "application/json"
       }
     });
-    
+
     if (response.ok) {
       const text = await response.text();
       console.log('✅ Backend connection successful:', text);
@@ -25,7 +35,7 @@ export async function testBackendConnection() {
   } catch (err) {
     console.error('❌ Backend connection failed:', err);
   }
-  
+
   return false;
 }
 
